@@ -1,4 +1,126 @@
-# Getting Started with Create React App
+# RESTy
+
+## Author: 
+> Stephen Clemmer
+___
+## Problem Domain
+> RESTy is an API testing tool that can be run in any browser, allowing a user to easily interact with APIs in a familiar interface.
+
+## Links and Resources
+TBD: ci/cd (GitHub Actions)
+TBD: This application has not yet been required to have been deployed
+TBD: This application has not yet been required to have been deployed
+
+## Core Requirements and Functionality
+
+### Simple, intuitive user interface
+
+> **A form where a user:**
+
+- Enters a REST API Endpoint (URI)
+- Selects the REST Method to use (get, post, put, delete)
+- For put and post, allow the user to enter JSON to be used as the body for the request
+- A button to initiate the request
+
+> **An output section which:**
+
+- Displays a spinner to indicate a request is in process
+- Once a request is complete:
+  - Hide the spinner
+  - Display a well formatted view of the API response in 2 sections
+    - Headers
+    - Body
+
+> **A history section which:**
+
+- Shows a list of all unique, successful requests
+- Allows a user to click or select one to re-populate the form so they can repeat the request
+
+
+## UML
+![RESTy UML](./assets/RESTy%20UML.png)
+
+## Technical Requirements
+
+>The application will be created with the following overall architecture and methodologies
+
+- React
+- ES6 Classes
+- Shared Component State
+- Local Storage for storing request history
+- Superagent or Axios for performing API Requests
+- SASS for styling
+  - Global Theme
+  - Component specific CSS where possible
+- Test Driven Development, using Jest
+  - Tests will be runnable locally
+- Deployment to GitHub Pages using an Action
+
+## Setup
+**.env requirements (where applicable)**
+
+## PORT
+> 3000
+
+## DATABASE_URL 
+- TBD: URL to the running Postgres instance/db
+
+## How to initialize/run your application (where applicable)
+> Load from github and initialize in the CLI using 'npm start'.
+
+- TBD: How to use your library (where applicable)
+- TBD: Features / Routes
+
+Feature One: Details of feature
+GET : /hello - specific route to hit
+
+## Tests
+
+- TBD: At the time of this assigment tests are specifically not required
+- Any tests of note?
+- Describe any tests that you did not complete, skipped, etc
+
+## Application Structure
+
+- ├── .gitignore
+- ├── .eslintrc.json
+- ├── node_modules
+- ├── __tests__
+- │   ├── app.test.js
+- │   ├── footer.test.js
+- │   ├── form.test.js
+- │   ├── header.test.js
+- │   ├── history.test.js
+- │   └── results.test.js
+- ├── public
+- |   └── index.html
+- ├── src
+- │   ├── index.js
+- │   ├── app.js
+- │   ├── app.scss
+- │   ├── components
+- │   │   ├── foooter
+- │   │   │   └── footer.jsx
+- │   │   │   └── footer.scss
+- │   │   ├── form
+- │   │   │   └── form.jsx
+- │   │   │   └── form.scss
+- │   │   ├── history
+- │   │   │   └── history.jsx
+- │   │   │   └── history.scss
+- │   │   ├── results
+- │   │   │   └── results.jsx
+- │   │   │   └── results.scss
+- │   │   ├── header
+- │   │   │   └── header.jsx
+- │   │   │   └── header.scss
+- ├── .gitignore
+- │   package-lock.json
+- │   package.json
+- └── README.md
+
+___
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
