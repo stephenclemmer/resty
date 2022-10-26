@@ -5,11 +5,11 @@ import './form.scss';
 const Form = (props) => {
 
   const [method, setMethod] = useState('GET');
+  const [url, setUrl] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    let getUrl = e.target.url.value;
-    props.handleApiCall(getUrl, method);
+    props.handleApiCall(url, method);
   }
 
   return (
@@ -17,7 +17,7 @@ const Form = (props) => {
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL:</span>
-          <input name='url' type='text' />
+          <input onChange={(e) => setUrl(e.target.value)} name='url' type='text' />
           <button type="submit">Submit</button>
         </label>
         <label className="methods">
