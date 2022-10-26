@@ -1,12 +1,17 @@
 # RESTy
 
-## Author: 
+## Author
+
 > Stephen Clemmer
 ___
+
 ## Problem Domain
+
 > RESTy is an API testing tool that can be run in any browser, allowing a user to easily interact with APIs in a familiar interface.
 
 ## Links and Resources
+
+Brandon Pitts assited me with understanding Lab 27.
 TBD: ci/cd (GitHub Actions)
 TBD: This application has not yet been required to have been deployed
 TBD: This application has not yet been required to have been deployed
