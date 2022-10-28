@@ -6,7 +6,7 @@ const Footer = (props) => {
 
     return (
       <>
-        <footer>&copy; 2018</footer>;
+        <footer>&copy; 2022</footer>;
       </>
     )
 }

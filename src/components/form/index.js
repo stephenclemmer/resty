@@ -6,11 +6,18 @@ const Form = (props) => {
 
   const [method, setMethod] = useState('GET');
   const [url, setUrl] = useState('');
-  const [data, setData] = useState('');
+  const [data, setData] = useState();
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.handleApiCall(url, method, data);
+    const formData = {
+      method,
+      url,
+      data,
+    }
+
+    props.handleApiCall(formData);
+    
   }
 
   return (
