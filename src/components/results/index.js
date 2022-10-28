@@ -6,21 +6,24 @@ const Results = (props) => {
 
   return (
     <section data-testid="headers">
-      {props.headers ? 
-      (
-        <>
-          <span className="headers"> Headers:
-            <JSONPretty data={props.headers}/>
-            <JSONPretty data={props.data}/>
-          </span>
-        </>
-      ) : 
-      (<span>
-        Thinking.......
-      </span>)
-    }
-      {/* <pre data-testid2="results-pre">{props.headers ? JSON.stringify(props.headers, undefined, 2) : null}</pre>
-      <pre data-testid="results-pre">{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre> */}
+      {props.headers ?
+        (
+          <>
+            <span className="history"> History:
+              <JSONPretty data={props.history} />
+            </span>
+            <span className="headers"> Headers:
+              <JSONPretty data={props.headers} />
+            </span>
+            <span className="results"> Results:
+              <JSONPretty data={props.data} />
+            </span>
+          </>
+        ) :
+        (<span>
+          Let's play with an API!
+        </span>)
+      }
     </section>
   )
 }

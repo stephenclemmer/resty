@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './app.scss';
 import axios from 'axios';
 
@@ -8,42 +8,93 @@ import Form from './components/form';
 import Results from './components/results';
 
 function App() {
-  const [data, setData] = useState(null);
-  const [requestParams, setRequestParams] = useState({});
-  const [headers, setHeaders] = useState(null);
 
-  useEffect(() => {
-    console.log('This is a hook called useEffect');
-  })
+  const initialState = {
+    data: null,
+    requestParams: {},
+    headers: null,
+    history: [],
+  };
 
-  const callApi = async (url, method) => {
-
-    const formData = await axios ({
-      method: method,
-      url: url, 
-    })
-
-    let params = {
-      url,
-      method,
+  const stateSetter = (state, action) => {
+    switch (action.type) {
+      case 'SET_DATA':
+        return { ...state, data: action.payload };
+      case 'SET_REQUEST_PARAMS':
+        return { ...state, requestParams: action.payload };
+      case 'SET_HISTORY':
+        return { ...state, history: [...state.history, action.payload] };
+      case 'SET_HEADERS':
+        return { ...state, headers: action.payload };
+      default: return state;
     }
-
-    setData(formData.data.results);
-    setRequestParams(params);
-    setHeaders(formData.headers); 
   }
 
+  
+  const setData = (response) => {
+    let action = {
+      type: 'SET_DATA',
+      payload: response,
+    }
+    dispatch(action);
+  }
+  
+  const setHeaders = (headers) => {
+    let action = {
+      type: 'SET_HEADERS',
+      payload: headers,
+    }
+    dispatch(action);
+  }
+  
+  const setHistory = (history) => {
+    let action = {
+      type: 'SET_HISTORY',
+      payload: history,
+    }
+    dispatch(action);
+  }
+  
+  const [state, dispatch] = useReducer(stateSetter, initialState);
+// ______________________________________________________
 
-    return (
-      <>
-        <Header />
-        <div>Request Method: {requestParams.method}</div>
-        <div>URL: {requestParams.url}</div>
-        <Form handleApiCall={callApi} />
-        <Results data={data} headers={headers} />
-        <Footer />
-      </>
-    );
+  const triggerApi = (formData) => {
+    setRequestParams(formData);
+  }
+
+  const setRequestParams = (formData) => {
+    let action = {
+      type: 'SET_REQUEST_PARAMS',
+      payload: formData,
+    }
+    dispatch(action);
+  }
+
+  useEffect(() => {
+    const callApi = async () => {
+      const response = await axios(state.requestParams);
+
+      setData(response.data);
+      setHeaders(response.headers);
+      setHistory(state.requestParams);
+    }
+
+    callApi();
+
+  }, [state.requestParams])
+
+// ___________________________________________________
+
+  return (
+    <>
+      <Header />
+      <div>Request Method: {state.requestParams.method}</div>
+      <div>URL: {state.requestParams.url}</div>
+      <Form handleApiCall={triggerApi} />
+      <Results history={state.history} data={state.data} headers={state.headers} />
+      <Footer />
+    </>
+  );
 
 }
 
